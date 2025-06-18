@@ -26,7 +26,7 @@ id = true
 // Intersection of Types
 type person = {name:string}       // type alias 
 type employe = {employeId:number} // type alias 
-type staff = person & employe     // union of both  &
+type staff = person & employe     // union of both with "&""
 
 const staffMember:staff = {
     name:"Alice",
