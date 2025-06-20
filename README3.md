@@ -107,7 +107,7 @@ sum.toAdd(); // → Sum is: 10
 |--------------------|----------------------------------|
 | Einmalige Logik    | Wiederverwendbarer Bauplan       |
 | Kein Zustand       | Hat eigenen Zustand (`this.xyz`) |
-| Einfach             | Strukturiert, OOP-konform        |
+| Einfach            | Strukturiert, OOP-konform        |
 
 ---
 
@@ -119,4 +119,4 @@ Du kannst jetzt:
 - Objektzustand speichern und verändern
 - Objektmethoden aufrufen (`.greetings()`, `.promote()`)
 
-🧭 Nächster Schritt: Vererbung, Zugriffsschutz (`private`, `public`) und abstrakte Klassen.
+
