@@ -71,7 +71,7 @@ class Fan extends Appliance{
 
 class WaschingMachine extends Appliance{
     turnOn():void{
-        console.log(`${this.name} wash the loundry `)
+        console.log(`${this.name} now wash the loundry `)
     };
     describe(){
         console.log(`I am a ${this.name} and wash a lot of Clothes `)
