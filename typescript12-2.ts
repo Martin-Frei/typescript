@@ -1,6 +1,6 @@
 // Utilieties Types
 
-//Pick 
+//Pick required the selected keys
 type User2 = {
     id:number;
     name:string;
@@ -21,7 +21,6 @@ const infoUser2:loginData2 = {
 }
 
 // record
-
 type status1 = "pending" | "aproved" | "rejected"
 const statusMsg: Record <status1, string> = {
     pending:"Still under review",
@@ -32,3 +31,15 @@ const statusMsg: Record <status1, string> = {
 console.log(statusMsg.pending)
 
 
+type meat ={
+    meat:string;
+    legs:number;
+    poultry:boolean
+}
+
+type meat1 = Pick<meat, "meat"| "legs">
+const meat3:meat1 = {
+    meat: "pork",
+    legs: 4
+}
+console.log(meat3)
