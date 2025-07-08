@@ -70,6 +70,7 @@ type cars2 = {
 }
 
 type newCar =  Extract<keyof cars2,"model" | "age">
+type newCar1 =  Extract<keyof cars2,"brand" | "model">
 type mainCar = Pick<cars2, newCar>
 const user10: mainCar = {
     model:"Audi",

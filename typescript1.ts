@@ -34,10 +34,10 @@ const staffMember:staff = {
 }
 console.log(staffMember)
 
-function add(a:number, b:number) {
+function add1(a:number, b:number) {
     return a + b
 }
-console.log(add(3,5))    
+console.log(add1(3,5))    
 
 function nameAgeTemplate(name:string, age:number){
     return `${name} is ${age} Years`

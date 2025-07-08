@@ -1,8 +1,8 @@
 // interface using with OOP (can be redeclared ?? )
 
-interface User{name:string; age:number}   // semicolon
+interface User4{name:string; age:number}   // semicolon
 
-const user:User = {
+const user:User4 = {
     name:"frank",                          // only komma
     age: 34
 }
