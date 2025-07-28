@@ -1,5 +1,5 @@
 
-abstract class Animal {
+abstract class Animal6 {
     constructor(protected name:string){
         this.name = name;
     }
@@ -10,7 +10,7 @@ abstract class Animal {
 }
 
 
-class Dogs extends Animal{
+class Dogs extends Animal6{
     makeSound(): void {
         console.log("Woow.....")
     }
@@ -24,7 +24,7 @@ myDog.makeSound()
 myDog.move()
 myDog.printName()
 
-abstract class Person {
+abstract class Person6 {
     constructor(public name:string){
         this.name = name;
     }
@@ -34,7 +34,7 @@ abstract class Person {
     }
 }
 
-class Teacher extends Person{
+class Teacher extends Person6{
     greet(){
         console.log(`Hello Students, i am ${this.name}`)
     }
