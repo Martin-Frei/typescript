@@ -1,80 +1,95 @@
-# 📘 TypeScript Lektion 20 – `reduce()` auf zwei Arrays anwenden
 
-In dieser Lektion geht es darum, wie du zwei Arrays – eines mit Werten (`number[]`) und eines mit Schlüsseln (`string[]`) – zu einem Objekt (`Record<string, number>`) kombinieren kannst. Dabei kommt die Methode `.reduce()` zum Einsatz.
+# 📘 TypeScript – Reduce Methoden und Array-Verarbeitung (README20)
+
+## 🧠 Ziel
+In dieser Lektion wurde der Umgang mit `.reduce()` in TypeScript vertieft, insbesondere für:
+- Objektbildung aus Arrays
+- Stringverkettung
+- Berechnung von Maximum und Durchschnittswerten
 
 ---
 
-## ✅ Der Code
+## 🧪 Codebeispiele & Erklärungen
+
+### 🔁 1. Mapping von Wochentagen auf Zahlen mit `reduce()`
 
 ```ts
-let num20: number[] = [1, 2, 3, 4, 5, 6, 7];
-let array: string[] = ["Monday", "Tuesday", "Wendsday", "Thursday", "Friday", "Saturday", "Sunday"];
+let num20:number[] = [1, 2, 3, 4, 5, 6, 7];
+let array:string[] = ["Monday", "Tuesday", "Wendsday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-const anyName = array.reduce((accumulator, currentValue, index, array) => {
-    if (!accumulator[currentValue]) {
-        accumulator[currentValue] = num20[index];
+const anyName = array.reduce((accumulator, currentValue, index) => {
+    if (!accumulator[currentValue])  {
+        accumulator[currentValue] =  num20[index];
     }
     return accumulator;
-}, {} as Record<string, number>);
+},  {} as Record<string , number>);
 
 console.log(anyName);
 console.log(typeof(anyName));
 ```
 
----
-
-## 🔍 Erklärung
-
-### 🎯 Ziel:
-Zwei Arrays kombinieren – das eine liefert die **Schlüssel** (Wochentage), das andere die **Werte** (Zahlen).
-
-### 🧠 Was passiert Schritt für Schritt?
-1. `.reduce()` wird über das Array `array` (Wochentage) ausgeführt.
-2. `accumulator` ist ein Objekt (`Record<string, number>`), das gesammelt wird.
-3. `currentValue` ist jeweils ein Wochentag.
-4. `index` gibt die aktuelle Position im Array an.
-5. `num20[index]` greift auf den passenden Zahlenwert im `num20`-Array zu.
-6. Die Bedingung `if (!accumulator[currentValue])` sorgt dafür, dass keine doppelten Schlüssel entstehen.
-7. Das Ergebnis ist ein Objekt, in dem jedem Wochentag ein Zahlenwert zugewiesen ist.
+📝 **Erklärung:** Wir erstellen ein Objekt mit Wochentagen als Schlüssel und den zugehörigen Zahlenwerten.  
+Verwendet wird `reduce`, um aus zwei Arrays (`array` und `num20`) ein kombiniertes Objekt zu erstellen.
 
 ---
 
-## 📦 Ausgabe
+### 🧵 2. Verkettung aller Wochentage zu einem String
 
 ```ts
-{
-  Monday: 1,
-  Tuesday: 2,
-  Wendsday: 3,
-  Thursday: 4,
-  Friday: 5,
-  Saturday: 6,
-  Sunday: 7
-}
-string
+const anotherName = array.reduce((acc, curV) => {
+    acc += curV + ",";
+    return acc;
+},"");
+
+console.log(anotherName);
+console.log(typeof(anotherName));
 ```
 
-### Warum `typeof(anyName)`?  
-- Gibt dir zur Laufzeit zurück, dass `anyName` ein Objekt ist (`"object"`). In TypeScript siehst du vorher schon den Typ (`Record<string, number>`), aber im echten JavaScript-Code brauchst du `typeof`.
+📝 **Erklärung:** Alle Wochentage werden zu einem einzigen String verbunden, getrennt durch Kommata.  
+`.reduce()` startet mit einem leeren String als Anfangswert.
 
 ---
 
-## 🧠 Merksatz
-> `.reduce()` ist dein Werkzeug, wenn du **aus vielen Werten einen Wert** machen willst – hier ein Objekt.
+### 🔢 3. Das Maximum in einem Array finden
+
+```ts
+const maxNum = num20.reduce((acc, curV) => {
+    if (!(acc > curV)) {
+        acc = curV;
+    }
+    return acc;
+}, 0);
+
+console.log(maxNum);
+```
+
+📝 **Erklärung:** Es wird geprüft, ob `curV` größer ist als `acc`. Wenn ja, wird `acc` ersetzt.  
+So bleibt am Ende der größte Wert übrig.
 
 ---
 
-## 🧰 Verwendete Features
+### 📊 4. Durchschnitt berechnen
 
-- `reduce()` – mächtige Array-Methode zur Aggregation
-- `Record<string, number>` – vordefinierter Utility Type in TypeScript
-- Zugriff mit Index über parallele Arrays
+```ts
+const avgNum = num20.reduce((acc, curV) => {
+    acc += curV;
+    return acc;
+}, 0);
+
+console.log(avgNum / num20.length);
+```
+
+📝 **Erklärung:** Die Summe aller Zahlen wird berechnet und anschließend durch die Anzahl geteilt.  
+Damit erhalten wir den Durchschnitt.
 
 ---
 
-## 🧪 Bonus-Tipp
-Statt `if (!accumulator[currentValue])` kann auch direkt zugewiesen werden, wenn du sicher bist, dass keine Duplikate vorkommen.
+## 🧰 Gelernt
+
+- Nutzung von `.reduce()` zur Umwandlung von Arrays in Objekte, Strings oder Werte
+- Initialwerte bei `reduce()` sind entscheidend
+- Datentypen wie `Record<string, number>` helfen, Ergebnisse typensicher zu gestalten
 
 ---
 
-**✅ Sehr gute Anwendung von `reduce()` und parallel laufenden Arrays. Gut gemacht!**
+✅ **Tipp:** `reduce()` ist extrem mächtig, wenn man Transformationen oder Aggregationen in Arrays vornehmen will. Aber: Anfangswert und Datentypen sind entscheidend für korrektes Verhalten!
